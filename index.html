@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sahithyolsav Candidate Portal</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #0F3D30;
+      --primary-mid: #155845;
+      --primary-light: #217A5F;
+      --accent: #D9B56D;
+      --accent-light: #E8C98D;
+      --cream: #FAF8F2;
+      --card-bg: #FFFFFF;
+      --text-dark: #0F1C10;
+      --text-mid: #3A4A3C;
+      --text-muted: #6B7A6D;
+      --border: rgba(15,61,48,0.1);
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+      line-height: 1.7;
+    }
+
+    /* HERO */
+    .hero { background: var(--primary); }
+    .hero-inner {
+      max-width: 900px; margin: 0 auto;
+      padding: 96px 24px 88px; text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: rgba(217,181,109,0.15);
+      border: 0.5px solid rgba(217,181,109,0.35);
+      border-radius: 50px; padding: 5px 15px;
+      font-size: 11.5px; color: var(--accent-light);
+      letter-spacing: 0.06em; text-transform: uppercase;
+      font-weight: 500; margin-bottom: 28px;
+    }
+    .hero h1 {
+      font-size: clamp(32px, 5.5vw, 54px);
+      font-weight: 600; color: #FAF8F2;
+      line-height: 1.15; margin-bottom: 18px;
+      letter-spacing: -0.025em;
+    }
+    .hero h1 span { color: var(--accent); }
+    .hero p {
+      font-size: 17px; color: rgba(250,248,242,0.58);
+      max-width: 460px; margin: 0 auto 44px; line-height: 1.75;
+    }
+    .cta-group {
+      display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;
+      margin-bottom: 64px;
+    }
+    .btn-primary {
+      background: var(--accent); color: var(--primary);
+      border: none; border-radius: 8px;
+      padding: 12px 22px; font-size: 14px; font-weight: 600;
+      cursor: pointer; display: inline-flex; align-items: center; gap: 7px;
+      text-decoration: none; transition: background 0.15s;
+    }
+    .btn-primary:hover { background: var(--accent-light); }
+    .btn-outline {
+      background: transparent; color: rgba(250,248,242,0.75);
+      border: 0.5px solid rgba(250,248,242,0.2); border-radius: 8px;
+      padding: 12px 20px; font-size: 14px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 7px;
+      transition: border-color 0.15s, color 0.15s;
+    }
+    .btn-outline:hover { border-color: rgba(250,248,242,0.45); color: #FAF8F2; }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 52px; flex-wrap: wrap;
+      border-top: 0.5px solid rgba(250,248,242,0.08); padding-top: 44px;
+    }
+    .stat-item { text-align: center; }
+    .stat-number { font-size: 28px; font-weight: 600; color: var(--accent); }
+    .stat-label { font-size: 12px; color: rgba(250,248,242,0.38); margin-top: 4px; letter-spacing: 0.04em; }
+
+    /* PROBLEM */
+    .problem-section { background: #EEF0EB; }
+    .problem-inner { max-width: 900px; margin: 0 auto; padding: 80px 24px; }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.09em;
+      text-transform: uppercase; color: var(--primary-light); margin-bottom: 10px;
+    }
+    .section-title {
+      font-size: clamp(22px, 3.5vw, 34px); font-weight: 600;
+      color: var(--primary); line-height: 1.22;
+      margin-bottom: 48px; max-width: 500px;
+    }
+
+    .vs-grid {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: 16px; align-items: center;
+    }
+    .vs-card {
+      background: var(--card-bg); border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 24px;
+    }
+    .vs-card.before { border-color: rgba(162,45,45,0.18); }
+    .vs-card.after { border-color: rgba(15,61,48,0.22); }
+    .vs-header {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.07em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+    .vs-card.before .vs-header { color: #A32D2D; }
+    .vs-card.after .vs-header { color: var(--primary-light); }
+    .vs-item {
+      display: flex; align-items: flex-start; gap: 9px;
+      font-size: 13.5px; color: var(--text-mid);
+      margin-bottom: 10px; line-height: 1.5;
+    }
+    .vs-item i { font-size: 15px; margin-top: 2px; flex-shrink: 0; }
+    .vs-card.before .vs-item i { color: #A32D2D; }
+    .vs-card.after .vs-item i { color: var(--primary-light); }
+    .vs-divider {
+      width: 38px; height: 38px; background: var(--primary);
+      border-radius: 50%; display: flex; align-items: center;
+      justify-content: center; flex-shrink: 0;
+    }
+    .vs-divider i { color: #FAF8F2; font-size: 16px; }
+
+    /* FEATURES */
+    .features-section { background: var(--cream); padding: 80px 24px; }
+    .features-inner { max-width: 900px; margin: 0 auto; }
+    .features-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 14px; margin-top: 14px;
+    }
+    .feature-card {
+      background: var(--card-bg); border: 0.5px solid var(--border);
+      border-radius: 12px; padding: 24px 20px;
+    }
+    .feature-icon {
+      width: 42px; height: 42px;
+      background: rgba(15,61,48,0.07);
+      border-radius: 10px; display: flex; align-items: center;
+      justify-content: center; margin-bottom: 14px;
+    }
+    .feature-icon i { font-size: 21px; color: var(--primary); }
+    .feature-card h3 { font-size: 14px; font-weight: 600; color: var(--primary); margin-bottom: 7px; }
+    .feature-card p { font-size: 13px; color: var(--text-muted); line-height: 1.65; }
+
+    /* HOW IT WORKS */
+    .how-section { background: var(--primary); }
+    .how-inner { max-width: 900px; margin: 0 auto; padding: 80px 24px; }
+    .how-inner .section-label { color: var(--accent-light); }
+    .how-inner .section-title { color: #FAF8F2; }
+    .steps-row { display: flex; flex-wrap: wrap; gap: 0; margin-top: 12px; }
+    .step {
+      flex: 1; min-width: 160px;
+      display: flex; flex-direction: column; align-items: flex-start;
+      padding: 0 32px 0 0; position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute; right: 14px; top: 19px;
+      width: 18px; height: 0.5px;
+      background: rgba(250,248,242,0.15);
+    }
+    .step-num {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: var(--accent); color: var(--primary);
+      font-size: 15px; font-weight: 600;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 14px; flex-shrink: 0;
+    }
+    .step h3 { font-size: 15px; font-weight: 600; color: #FAF8F2; margin-bottom: 8px; }
+    .step p { font-size: 13px; color: rgba(250,248,242,0.45); line-height: 1.65; }
+
+    /* WHATSAPP */
+    .whatsapp-section { background: #EEF0EB; padding: 80px 24px; }
+    .wa-inner { max-width: 900px; margin: 0 auto; }
+    .wa-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 44px; align-items: center; margin-top: 12px;
+    }
+    .wa-desc p { font-size: 15px; color: var(--text-mid); line-height: 1.75; margin-bottom: 22px; }
+    .wa-feature-list { display: flex; flex-direction: column; gap: 11px; }
+    .wa-feature {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 13.5px; color: var(--text-mid);
+    }
+    .wa-feature i { font-size: 16px; color: var(--primary-light); }
+    .wa-mock { background: #D6E4CB; border-radius: 16px; padding: 20px 16px; }
+    .wa-header {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 0.5px solid rgba(0,0,0,0.08);
+    }
+    .wa-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: #25D366; display: flex; align-items: center; justify-content: center;
+    }
+    .wa-avatar i { color: white; font-size: 18px; }
+    .wa-name { font-size: 13px; font-weight: 600; color: #111; }
+    .wa-sub { font-size: 11px; color: #888; }
+    .wa-bubble {
+      background: white; border-radius: 10px 10px 10px 2px;
+      padding: 10px 13px; margin-bottom: 10px;
+      font-size: 12.5px; color: #111; line-height: 1.6;
+      max-width: 87%; box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    }
+    .wa-bubble strong { font-weight: 600; display: block; margin-bottom: 3px; font-size: 13px; }
+    .wa-time { font-size: 10px; color: #aaa; margin-top: 6px; display: block; text-align: right; }
+
+    /* FOOTER */
+    .footer { background: var(--primary); }
+    .footer-inner {
+      max-width: 900px; margin: 0 auto;
+      padding: 40px 24px;
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px;
+      border-top: 0.5px solid rgba(250,248,242,0.08);
+    }
+    .footer-logo { font-size: 15px; font-weight: 600; color: #FAF8F2; }
+    .footer-logo span { color: var(--accent); }
+    .footer-copy { font-size: 12px; color: rgba(250,248,242,0.3); }
+
+    /* RESPONSIVE */
+    @media (max-width: 620px) {
+      .vs-grid { grid-template-columns: 1fr; }
+      .vs-divider { display: none; }
+      .wa-grid { grid-template-columns: 1fr; }
+      .steps-row { flex-direction: column; gap: 28px; }
+      .step { padding: 0; }
+      .step:not(:last-child)::after { display: none; }
+      .hero-stats { gap: 28px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <i class="ti ti-sparkles"></i>
+      Kerala's literary festival, reimagined
+    </div>
+    <h1>Your festival,<br>in <span>your pocket.</span></h1>
+    <p>No queues. No confusion. Scan a QR, identify yourself, and instantly access your schedule, results, and updates.</p>
+    <div class="cta-group">
+      <button class="btn-primary"><i class="ti ti-scan-eye"></i> Scan face</button>
+      <button class="btn-outline"><i class="ti ti-id-badge"></i> Registration ID</button>
+      <button class="btn-outline"><i class="ti ti-device-mobile"></i> Phone number</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-number">3 sec</div>
+        <div class="stat-label">To identify yourself</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">0</div>
+        <div class="stat-label">Volunteers needed</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">Live</div>
+        <div class="stat-label">Results &amp; updates</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEM vs SOLUTION -->
+<section class="problem-section">
+  <div class="problem-inner">
+    <div class="section-label">The problem we solved</div>
+    <div class="section-title">The festival was great. Finding your way wasn't.</div>
+    <div class="vs-grid">
+      <div class="vs-card before">
+        <div class="vs-header">Before</div>
+        <div class="vs-item"><i class="ti ti-x"></i> Hunt volunteers for venue info</div>
+        <div class="vs-item"><i class="ti ti-x"></i> Miss events due to last-minute changes</div>
+        <div class="vs-item"><i class="ti ti-x"></i> Wait in line for printed schedules</div>
+        <div class="vs-item"><i class="ti ti-x"></i> Check notice boards for results</div>
+      </div>
+      <div class="vs-divider"><i class="ti ti-arrow-right"></i></div>
+      <div class="vs-card after">
+        <div class="vs-header">Now</div>
+        <div class="vs-item"><i class="ti ti-check"></i> Scan QR at any venue banner</div>
+        <div class="vs-item"><i class="ti ti-check"></i> Instant WhatsApp alerts on changes</div>
+        <div class="vs-item"><i class="ti ti-check"></i> Full schedule on your phone</div>
+        <div class="vs-item"><i class="ti ti-check"></i> Results published live</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features-section">
+  <div class="features-inner">
+    <div class="section-label">What you get</div>
+    <div class="section-title">Everything you need, the moment you need it</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-scan-eye"></i></div>
+        <h3>Face recognition</h3>
+        <p>Take a selfie. We find your profile instantly — no ID card required at the gate.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-calendar-event"></i></div>
+        <h3>Live schedule</h3>
+        <p>Your personalised event timetable with venue, time, and status — always current.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-trophy"></i></div>
+        <h3>Instant results</h3>
+        <p>Ranks and grades published the moment judges submit — no waiting, no board-checking.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-brand-whatsapp"></i></div>
+        <h3>WhatsApp alerts</h3>
+        <p>Venue changes, result announcements, and reminders straight to your chat.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="ti ti-qrcode"></i></div>
+        <h3>QR entry points</h3>
+        <p>Every banner has a QR. Scan anywhere in the venue to jump straight into your portal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="how-section">
+  <div class="how-inner">
+    <div class="section-label">How it works</div>
+    <div class="section-title">Three steps. Seconds, not minutes.</div>
+    <div class="steps-row">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Scan the QR</h3>
+        <p>Any venue banner has a code. Point your camera and you're in — no app to install.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Identify yourself</h3>
+        <p>Use your face, registration number, or phone. Your choice. All three are instant.</p>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Get everything</h3>
+        <p>Your schedule, results, and notifications are right there. Enable WhatsApp and you're done.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP -->
+<section class="whatsapp-section">
+  <div class="wa-inner">
+    <div class="section-label">Stay ahead</div>
+    <div class="section-title">The updates come to you</div>
+    <div class="wa-grid">
+      <div class="wa-desc">
+        <p>Festival days are hectic. Venues shift, rounds start early, results drop unexpectedly. The WhatsApp alert system makes sure you never find out too late.</p>
+        <div class="wa-feature-list">
+          <div class="wa-feature"><i class="ti ti-clock-play"></i> 30-minute event reminders</div>
+          <div class="wa-feature"><i class="ti ti-map-pin-exclamation"></i> Venue change notifications</div>
+          <div class="wa-feature"><i class="ti ti-trophy"></i> Result published alerts</div>
+          <div class="wa-feature"><i class="ti ti-circle-arrow-right"></i> Round starting soon</div>
+        </div>
+      </div>
+      <div class="wa-mock">
+        <div class="wa-header">
+          <div class="wa-avatar"><i class="ti ti-brand-whatsapp"></i></div>
+          <div>
+            <div class="wa-name">Sahithyolsav Portal</div>
+            <div class="wa-sub">Official updates</div>
+          </div>
+        </div>
+        <div class="wa-bubble">
+          <strong>⏰ Event reminder</strong>
+          Your event Arabic Speech starts in 30 minutes. Venue: Hall B, Ground Floor.
+          <span class="wa-time">10:30 AM</span>
+        </div>
+        <div class="wa-bubble">
+          <strong>📍 Venue change</strong>
+          Arabic Speech has moved from Hall B to Hall D. Please head there now.
+          <span class="wa-time">10:48 AM</span>
+        </div>
+        <div class="wa-bubble">
+          <strong>🏆 Result published</strong>
+          Results for Arabic Speech are live. You ranked 2nd — Grade A.
+          <span class="wa-time">2:15 PM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">Sahithyolsav <span>Portal</span></div>
+    <div class="footer-copy">Built for participants. Runs at the festival.</div>
+  </div>
+</footer>
+
+</body>
+</html>
